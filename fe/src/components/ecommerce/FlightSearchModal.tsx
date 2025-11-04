@@ -3,6 +3,7 @@ import { Modal, Form, Select, DatePicker, Button, Table, message } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { AmadeusService } from "../../hooks/amadeusApi";
+import Swal from "sweetalert2";
 
 const amadeusService = new AmadeusService();
 
@@ -42,7 +43,34 @@ export const FlightSearchModal = ({
       const from = isDetail ? values.from_airport : fromAirport;
       const to = isDetail ? values.to_airport : toAirport;
       const date = dayjs(values.departure_date).format("YYYY-MM-DD");
+      if (!from || !to || !values.departure_date) {
+        Swal.fire({
+          icon: "warning",
+          title: "Thiếu thông tin",
+          text: "Vui lòng chọn đầy đủ điểm đi, điểm đến và ngày bay!",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
+      if (from && to && from === to) {
+        Swal.fire({
+          icon: "warning",
+          title: "Dữ liệu không hợp lệ",
+          text: "Điểm đi và điểm đến không được trùng nhau!",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
 
+      if (!date || dayjs(date).isBefore(dayjs(), "day")) {
+        Swal.fire({
+          icon: "warning",
+          title: "Ngày không hợp lệ",
+          text: "Ngày bay phải là ngày trong tương lai!",
+          confirmButtonText: "OK",
+        });
+        return;
+      }
       const data = await amadeusService.getFlightOffers(
         from,
         to,
@@ -79,10 +107,7 @@ export const FlightSearchModal = ({
       >
         {isDetail && (
           <>
-            <Form.Item
-              name="from_airport"
-              rules={[{ required: true, message: "Chọn điểm đi" }]}
-            >
+            <Form.Item name="from_airport">
               <Select
                 showSearch
                 placeholder="Chọn điểm đi"
@@ -94,10 +119,7 @@ export const FlightSearchModal = ({
               />
             </Form.Item>
 
-            <Form.Item
-              name="to_airport"
-              rules={[{ required: true, message: "Chọn điểm đến" }]}
-            >
+            <Form.Item name="to_airport">
               <Select
                 showSearch
                 placeholder="Chọn điểm đến"
@@ -111,11 +133,12 @@ export const FlightSearchModal = ({
           </>
         )}
 
-        <Form.Item
-          name="departure_date"
-          rules={[{ required: true, message: "Chọn ngày đi" }]}
-        >
-          <DatePicker />
+        <Form.Item name="departure_date">
+          <DatePicker
+            disabledDate={(current) =>
+              current && current < dayjs().startOf("day")
+            }
+          />
         </Form.Item>
 
         <Button type="primary" htmlType="submit" icon={<SearchOutlined />}>

@@ -33,6 +33,7 @@ export default function App() {
 
             {/* Others Page */}
             <Route path="/invoice/create" element={<InvoiceCreateForm />} />
+            
             <Route path="/invoice/" element={<InvoiceList />} />
             <Route path="/invoice/detail/:id" element={<InvoiceDetailForm />} />
             <Route path="/invoice/edit/:id" element={<InvoiceForm />} />

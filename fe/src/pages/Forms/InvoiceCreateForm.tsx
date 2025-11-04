@@ -67,11 +67,8 @@ const mockFlights = [
 ];
 
 const InvoiceCreateForm: React.FC = () => {
-  const [form] = Form.useForm();
-  const [searchForm] = Form.useForm();
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [selectedFlight, setSelectedFlight] = useState<any>(null);
-  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSeatModalOpen, setIsSeatModalOpen] = useState(false);
   const [passengers, setPassengers] = useState<Passenger[]>([
     {
@@ -93,11 +90,6 @@ const InvoiceCreateForm: React.FC = () => {
     useState<DiscountCode | null>(null);
   const [formData] = Form.useForm();
   const [formPayMent] = Form.useForm();
-  const handleSearchFlights = (values: any) => {
-    setTimeout(() => {
-      setSearchResults(mockFlights);
-    }, 500);
-  };
 
   useEffect(() => {
     getPromotions()
@@ -159,7 +151,7 @@ const InvoiceCreateForm: React.FC = () => {
   }, 0);
   const navigate = useNavigate();
   const handleSave = async (status: string) => {
-    if (status !== "TEMP" && !selectedFlight)
+    if (!selectedFlight)
       return Swal.fire({
         icon: "error",
         title: "Lỗi",
@@ -283,7 +275,7 @@ const InvoiceCreateForm: React.FC = () => {
         title:
           status === "templ"
             ? "Đã lưu tạm thông tin đặt vé!"
-            : `Đặt vé thành công! ID: ${result.id}`,
+            : `Đặt vé thành công! ID: ${result.invoice.invoiceCode}`,
         showConfirmButton: false,
         timer: 1500,
       });

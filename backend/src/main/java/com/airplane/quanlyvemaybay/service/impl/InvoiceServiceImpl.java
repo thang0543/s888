@@ -312,6 +312,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         existingInvoice.setCustomer(customer);
         existingInvoice.setCurrency(req.getSummary().getCurrency());
         existingInvoice.setTotalAmount(req.getSummary().getTotalAmount());
+        existingInvoice.setStatus("PAIN");
         existingInvoice.setStatus(req.getStatus());
         invoiceRepository.save(existingInvoice);
 

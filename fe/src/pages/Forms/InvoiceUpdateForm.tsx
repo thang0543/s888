@@ -319,7 +319,7 @@ const InvoiceForm: React.FC = () => {
         seatPrice: p.seatPrice
           ? parseFloat(p.seatPrice.replace(" EUR", "")) || 0
           : 0,
-        dob: p.dob,
+        dob: dayjs(p.dob).format("YYYY-MM-DD"),
         email: p.email,
         phone: p.phone,
         country: p.country,
@@ -379,87 +379,158 @@ const InvoiceForm: React.FC = () => {
   };
 
   const passengerColumns = [
-    {
-      title: "Họ tên",
-      width: 150,
-      render: (_: any, r: Passenger) => (
-        <Input
-          value={r.full_name}
-          onChange={(e) => updatePassenger(r.key, "full_name", e.target.value)}
-          prefix={<UserOutlined />}
-          placeholder="Nguyễn Văn A"
-        />
-      ),
-    },
-    {
-      title: "Loại",
-      width: 100,
-      render: (_: any, r: Passenger) => (
-        <Select
-          value={r.type}
-          onChange={(v) => updatePassenger(r.key, "type", v)}
-          style={{ width: "100%" }}
-        >
-          <Option value="adult">Người lớn</Option>
-          <Option value="child">Trẻ em</Option>
-          <Option value="infant">Em bé</Option>
-        </Select>
-      ),
-    },
-    {
-      title: "Hộ chiếu",
-      width: 130,
-      render: (_: any, r: Passenger) => (
-        <Input
-          value={r.passport_no}
-          onChange={(e) =>
-            updatePassenger(r.key, "passport_no", e.target.value)
-          }
-        />
-      ),
-    },
-    {
-      title: "Ngày sinh",
-      width: 130,
-      render: (_: any, r: Passenger) => (
-        <DatePicker
-          value={r.dob ? dayjs(r.dob, "DD/MM/YYYY") : undefined}
-          onChange={(_, s) => updatePassenger(r.key, "dob", s)}
-          format="DD/MM/YYYY"
-          style={{ width: "100%" }}
-          disabledDate={(c) => c && c >= dayjs().startOf("day")}
-        />
-      ),
-    },
-    {
-      title: "Ghế",
-      width: 100,
-      render: (_: any, r: Passenger) => (
-        <Button
-          type={r.seat ? "primary" : "default"}
-          size="small"
-          icon={<SwapOutlined />}
-          onClick={() => openSeatPicker(r.key)}
-          style={{ width: "100%" }}
-        >
-          {r.seat || "Chọn"}
-        </Button>
-      ),
-    },
-    {
-      title: "",
-      width: 50,
-      render: (_: any, r: Passenger) =>
-        passengers.length > 1 && (
-          <Button
-            danger
-            size="small"
-            icon={<DeleteOutlined />}
-            onClick={() => removePassenger(r.key)}
+      {
+        title: "Họ tên",
+        width: 150,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.full_name}
+            onChange={(e) =>
+              updatePassenger(record.key, "full_name", e.target.value)
+            }
+            placeholder="Nguyễn Văn A"
+            prefix={<UserOutlined />}
           />
         ),
-    },
-  ];
+      },
+      {
+        title: "Loại",
+        width: 100,
+        render: (_: any, record: Passenger) => (
+          <Select
+            value={record.type}
+            onChange={(v) => updatePassenger(record.key, "type", v)}
+            style={{ width: "100%" }}
+          >
+            <Option value="adult">Người lớn</Option>
+            <Option value="child">Trẻ em</Option>
+            <Option value="infant">Em bé</Option>
+          </Select>
+        ),
+      },
+      {
+        title: "Hộ chiếu",
+        width: 130,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.passport_no}
+            onChange={(e) =>
+              updatePassenger(record.key, "passport_no", e.target.value)
+            }
+            placeholder="C1234567"
+          />
+        ),
+      },
+      {
+        title: "Ngày sinh",
+        width: 130,
+        render: (_: any, record: Passenger) => (
+          <DatePicker
+            value={record.dob ? dayjs(record.dob, "DD/MM/YYYY") : undefined}
+            onChange={(_, dateString) => {
+              const selected = dayjs(dateString, "DD/MM/YYYY");
+              const today = dayjs().startOf("day");
+  
+              if (selected.isAfter(today)) {
+                Swal.fire({
+                  icon: "warning",
+                  title: "Cảnh báo",
+                  text: "Ngày sinh không được là ngày hôm nay hoặc tương lai!",
+                  confirmButtonText: "OK",
+                });
+                return;
+              }
+  
+              updatePassenger(record.key, "dob", dateString);
+            }}
+            style={{ width: "100%" }}
+            format="DD/MM/YYYY"
+            placeholder="Chọn ngày"
+            disabledDate={(current) => {
+              return current && current >= dayjs().startOf("day");
+            }}
+            allowClear
+          />
+        ),
+      },
+      {
+        title: "Quốc gia",
+        width: 120,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.country}
+            onChange={(e) =>
+              updatePassenger(record.key, "country", e.target.value)
+            }
+            placeholder="Vietnam"
+          />
+        ),
+      },
+      {
+        title: "Số ĐT",
+        width: 130,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.phone}
+            onChange={(e) => updatePassenger(record.key, "phone", e.target.value)}
+            placeholder="0901234567"
+          />
+        ),
+      },
+      {
+        title: "Email",
+        width: 160,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.email}
+            onChange={(e) => updatePassenger(record.key, "email", e.target.value)}
+            placeholder="abc@gmail.com"
+          />
+        ),
+      },
+      {
+        title: "Nơi ở",
+        width: 160,
+        render: (_: any, record: Passenger) => (
+          <Input
+            value={record.address}
+            onChange={(e) =>
+              updatePassenger(record.key, "address", e.target.value)
+            }
+            placeholder="Hà Nội"
+          />
+        ),
+      },
+      {
+        title: "Ghế",
+        width: 100,
+        render: (_: any, record: Passenger) => (
+          <Button
+            type={record.seat ? "primary" : "default"}
+            icon={<SwapOutlined />}
+            size="small"
+            onClick={() => openSeatPicker(record.key)}
+            style={{ width: "100%" }}
+            danger={record.seat ? true : false}
+          >
+            {record.seat || "Chọn"}
+          </Button>
+        ),
+      },
+      {
+        title: "",
+        width: 50,
+        render: (_: any, record: Passenger) =>
+          passengers.length > 1 ? (
+            <Button
+              danger
+              size="small"
+              icon={<DeleteOutlined />}
+              onClick={() => removePassenger(record.key)}
+            />
+          ) : null,
+      },
+    ];
 
   if (loading)
     return <div style={{ padding: 50, textAlign: "center" }}>Đang tải...</div>;
