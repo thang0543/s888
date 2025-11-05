@@ -21,3 +21,15 @@ export const getPromotions = async (): Promise<DiscountCode[]> => {
   const response = await axios.get<DiscountCode[]>(API_BASE);
   return Array.isArray(response.data) ? response.data : []; 
 };
+
+export const createPromotion = async (data: any) => {
+  await axios.post(API_BASE, data);
+};
+
+export const updatePromotion = async (id: number, data: any) => {
+  await axios.put(`${API_BASE}/${id}`, data);
+};
+
+export const toggleStatus = async (id: number) => {
+  await axios.delete(`${API_BASE}/${id}/status`);
+};

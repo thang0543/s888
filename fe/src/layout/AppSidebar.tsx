@@ -25,13 +25,18 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <CalenderIcon />,
-    name: "Booking Flights",
+    name: "tạo hóa đơn",
     path: "/invoice/create",
   },
   {
     icon: <CalenderIcon />,
-    name: "Manage Flights",
+    name: "Quản lý hóa đơn",
     path: "/invoice",
+  },
+  {
+    icon: <CalenderIcon />,
+    name: "Quản lý khuyến mãi",
+    path: "/promotion",
   },
 ];
 

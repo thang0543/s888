@@ -45,6 +45,10 @@ public class PromotionRes {
 
    private String nameRouter;
 
+   private Long routerId;
+
+   private Long customId;
+
     private Double minFare;
 
     private Boolean isActive = true;

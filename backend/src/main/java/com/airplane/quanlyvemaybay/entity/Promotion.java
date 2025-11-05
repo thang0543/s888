@@ -61,6 +61,9 @@ public class Promotion {
     @Column(name = "IS_ACTIVE")
     private Boolean isActive = true;
 
+    @Builder.Default
+    private String status = "Y";
+
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt = LocalDateTime.now();
 

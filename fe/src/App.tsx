@@ -20,6 +20,7 @@ import Home from "./pages/Dashboard/Home";
 import InvoiceList from "./pages/Dashboard/Invoice";
 import InvoiceDetailForm from "./pages/Forms/InvoiceDetail";
 import InvoiceForm from "./pages/Forms/InvoiceUpdateForm";
+import PromotionManager from "./pages/Forms/PromotionManager";
 
 export default function App() {
   return (
@@ -37,7 +38,7 @@ export default function App() {
             <Route path="/invoice/" element={<InvoiceList />} />
             <Route path="/invoice/detail/:id" element={<InvoiceDetailForm />} />
             <Route path="/invoice/edit/:id" element={<InvoiceForm />} />
-            <Route path="/blank" element={<Blank />} />
+            <Route path="/promotion" element={<PromotionManager />} />
 
             {/* Forms */}
             <Route path="/form-elements" element={<FormElements />} />

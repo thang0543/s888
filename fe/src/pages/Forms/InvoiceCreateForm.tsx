@@ -603,28 +603,31 @@ const InvoiceCreateForm: React.FC = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const validPromotions = useMemo(() => {
-    if (!selectedFlight) return [];
+ const validPromotions = useMemo(() => {
+  if (!selectedFlight) return [];
 
-    return promotions.filter((p) => {
-      const now = dayjs();
-      if (!p.isActive) return false;
-      if (dayjs(p.startDate).isAfter(now) || dayjs(p.endDate).isBefore(now))
-        return false;
-      if (p.airlineName !== selectedFlight.airline) return false;
+  return promotions.filter((p) => {
+    const now = dayjs();
+    if (!p.isActive) return false;
+    if (dayjs(p.startDate).isAfter(now) || dayjs(p.endDate).isBefore(now))
+      return false;
 
-      if (p.nameRouter && p.nameRouter !== selectedFlight.route) return false;
+    if (p.airlineName && p.airlineName !== selectedFlight.airline)
+      return false;
 
-      if (p.minFare && baseAmount < p.minFare) return false;
+    if (p.nameRouter && p.nameRouter !== selectedFlight.route)
+      return false;
 
-      if (p.code.includes("VIPCUSTOMER") && bookingCustomer) {
-        const id = parseInt(p.code.replace("VIPCUSTOMER", ""), 10);
-        if (bookingCustomer.id !== id) return false;
-      }
+    if (p.minFare && baseAmount < p.minFare) return false;
 
-      return true;
-    });
-  }, [promotions, selectedFlight, baseAmount, bookingCustomer]);
+    if (p.code.includes("VIPCUSTOMER") && bookingCustomer) {
+      const id = parseInt(p.code.replace("VIPCUSTOMER", ""), 10);
+      if (bookingCustomer.id !== id) return false;
+    }
+
+    return true;
+  });
+}, [promotions, selectedFlight, baseAmount, bookingCustomer]);
 
   const discountedTotal = useMemo(() => {
     if (!selectedPromotion) return totalAmount;
