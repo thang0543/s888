@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -39,9 +41,11 @@ public class User {
     @Column(name = "ROLE")
     private String role;
 
+    @CreationTimestamp
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
 }

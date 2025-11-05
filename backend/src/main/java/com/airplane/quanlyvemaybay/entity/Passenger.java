@@ -1,6 +1,8 @@
 package com.airplane.quanlyvemaybay.entity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -44,9 +46,11 @@ public class Passenger {
     @Column(name = "REGISTRATION_DATE")
     private LocalDateTime registrationDate;
 
+    @CreationTimestamp
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "UPDATED_AT")
     private LocalDateTime updatedAt;
 

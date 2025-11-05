@@ -3,6 +3,9 @@ package com.airplane.quanlyvemaybay.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -64,14 +67,11 @@ public class Promotion {
     @Builder.Default
     private String status = "Y";
 
+    @CreationTimestamp
     @Column(name = "CREATED_AT")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "UPDATED_AT")
-    private LocalDateTime updatedAt = LocalDateTime.now();
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    private LocalDateTime updatedAt;
 }

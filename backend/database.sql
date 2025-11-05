@@ -73,7 +73,9 @@ CREATE TABLE users (
 -- -------------------------------
 CREATE TABLE routes (
                         id NUMBER(19,0) PRIMARY KEY,
-                        name VARCHAR2(255 CHAR) NOT NULL
+                        name VARCHAR2(255 CHAR) NOT NULL,
+                         created_at TIMESTAMP(6),
+                        updated_at TIMESTAMP(6)
 );
 
 -- -------------------------------
@@ -128,7 +130,9 @@ CREATE TABLE invoice (
                          status VARCHAR2(255 CHAR),
                          customer_id NUMBER(19,0),
                          promotion_id NUMBER(19,0),
-                         issued_at TIMESTAMP(6)
+                         issued_at TIMESTAMP(6),
+                         created_at TIMESTAMP(6),
+                         updated_at TIMESTAMP(6)
 );
 
 -- -------------------------------
@@ -143,7 +147,9 @@ CREATE TABLE payment (
                          payment_code VARCHAR2(255 CHAR) NOT NULL UNIQUE,
                          transaction_id VARCHAR2(255 CHAR),
                          payment_date TIMESTAMP(6),
-                         invoice_id NUMBER(19,0)
+                         invoice_id NUMBER(19,0),
+                         created_at TIMESTAMP(6),
+                         updated_at TIMESTAMP(6)
 );
 
 -- -------------------------------
@@ -176,7 +182,9 @@ CREATE TABLE route_segments (
                                 to_airport VARCHAR2(255 CHAR) NOT NULL,
                                 stop_type VARCHAR2(255 CHAR) NOT NULL,
                                 flight_duration NUMBER(10,0) NOT NULL,
-                                stop_duration NUMBER(10,0)
+                                stop_duration NUMBER(10,0),
+                                created_at TIMESTAMP(6),
+                                updated_at TIMESTAMP(6)
 );
 
 -- -------------------------------
@@ -191,6 +199,8 @@ CREATE TABLE ticket (
                         booking_date TIMESTAMP(6) NOT NULL,
                         seat_number VARCHAR2(255 CHAR) NOT NULL,
                         class VARCHAR2(255 CHAR) NOT NULL,
+                        created_at TIMESTAMP(6),
+                        updated_at TIMESTAMP(6),
                         created_at TIMESTAMP(6),
                         updated_at TIMESTAMP(6)
 );
