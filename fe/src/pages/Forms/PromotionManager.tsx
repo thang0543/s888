@@ -192,7 +192,13 @@ const PromotionManager: React.FC = () => {
 
   const copyCode = (code: string) => {
     navigator.clipboard.writeText(code);
-    message.success(`Đã copy: ${code}`);
+    Swal.fire({
+      icon: "success",
+      title: "Đã copy!",
+      text: `Mã khuyến mãi: ${code}`,
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   const columns = [
