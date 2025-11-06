@@ -41,10 +41,6 @@ CREATE TABLE airlines (
                           name VARCHAR2(255 CHAR) NOT NULL,
                           code VARCHAR2(255 CHAR),
                           country VARCHAR2(255 CHAR) NOT NULL,
-                          manufacturner VARCHAR2(255 CHAR) NOT NULL,
-                          model VARCHAR2(255 CHAR) NOT NULL,
-                          capacity VARCHAR2(255 CHAR) NOT NULL,
-                          description VARCHAR2(255 CHAR),
                           ticket_issuance_fee FLOAT(53),
                           economy_commission FLOAT(53),
                           business_commission FLOAT(53),
@@ -268,11 +264,95 @@ VALUES (QUANLYVEMAYBAY.ROUTE_SEGMENT_SEQ.NEXTVAL, 1, 1, 'HAN', 'SGN', 'DIRECT', 
 -- ---------------------------
 -- AIRLINES
 -- ---------------------------
-INSERT INTO QUANLYVEMAYBAY.AIRLINES (ID, NAME, CODE, COUNTRY, CAPACITY, MANUFACTURNER, MODEL, ECONOMY_COMMISSION, BUSINESS_COMMISSION, TICKET_ISSUANCE_FEE, CHANGE_FEE, CREATED_AT)
-VALUES (QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Vietnam Airlines', 'VN', 'Vietnam', '200', 'Boeing', '787', 50, 100, 10, 20, SYSTIMESTAMP);
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Vietnam Airlines', 'VN', 'Vietnam',
+    20, 0.05, 0.08, 10, SYSTIMESTAMP, SYSTIMESTAMP
+);
 
-INSERT INTO QUANLYVEMAYBAY.AIRLINES (ID, NAME, CODE, COUNTRY, CAPACITY, MANUFACTURNER, MODEL, ECONOMY_COMMISSION, BUSINESS_COMMISSION, TICKET_ISSUANCE_FEE, CHANGE_FEE, CREATED_AT)
-VALUES (QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'VietJet Air', 'VJ', 'Vietnam', '180', 'Airbus', 'A320', 40, 90, 8, 15, SYSTIMESTAMP);
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Vietjet Air', 'VJ', 'Vietnam',
+    15, 0.04, 0.07, 8, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Bamboo Airways', 'QH', 'Vietnam',
+    18, 0.045, 0.075, 9, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Thai Airways', 'TG', 'Thailand',
+    25, 0.06, 0.09, 12, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Singapore Airlines', 'SQ', 'Singapore',
+    30, 0.07, 0.10, 15, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Qatar Airways', 'QR', 'Qatar',
+    35, 0.065, 0.11, 18, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Emirates', 'EK', 'United Arab Emirates',
+    38, 0.07, 0.12, 20, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Lufthansa', 'LH', 'Germany',
+    32, 0.06, 0.09, 16, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'Air France', 'AF', 'France',
+    33, 0.065, 0.095, 17, SYSTIMESTAMP, SYSTIMESTAMP
+);
+
+INSERT INTO airlines (
+    id, name, code, country, ticket_issuance_fee,
+    economy_commission, business_commission, change_fee,
+    created_at, updated_at
+) VALUES (
+    QUANLYVEMAYBAY.AIRLINES_SEQ.NEXTVAL, 'British Airways', 'BA', 'United Kingdom',
+    34, 0.07, 0.1, 18, SYSTIMESTAMP, SYSTIMESTAMP
+);
 
 -- ---------------------------
 -- PROMOTION

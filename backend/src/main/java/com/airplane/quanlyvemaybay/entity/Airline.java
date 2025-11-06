@@ -32,18 +32,6 @@ public class Airline {
     @Column(name = "COUNTRY", nullable = false)
     private String country;
 
-    @Column(name = "MANUFACTURNER", nullable = false)
-    private String manufacturer;
-
-    @Column(name = "MODEL", nullable = false)
-    private String model;
-
-    @Column(name = "CAPACITY", nullable = false)
-    private String capacity;
-
-    @Column(name = "DESCRIPTION")
-    private String description;
-
     @Column(name = "ECONOMY_COMMISSION")
     private Double economyCommission;
 
