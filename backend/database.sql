@@ -254,16 +254,6 @@ VALUES (QUANLYVEMAYBAY.USERS_SEQ.NEXTVAL, 'Nguyen Van A', 'a.nguyen@example.com'
 INSERT INTO QUANLYVEMAYBAY.USERS (ID, FULL_NAME, EMAIL, PASSWORD, PHONE_NUMBER, ROLE, DOB, CREATED_AT, UPDATED_AT)
 VALUES (QUANLYVEMAYBAY.USERS_SEQ.NEXTVAL, 'Tran Thi B', 'b.tran@example.com', 'password123', '0907654321', 'CUSTOMER', TO_DATE('1985-11-10','YYYY-MM-DD'), SYSTIMESTAMP, SYSTIMESTAMP);
 
--- ---------------------------
--- AIRPORTS
--- ---------------------------
-INSERT INTO QUANLYVEMAYBAY.AIRPORTS (CODE, NAME, CITY, COUNTRY)
-VALUES ('HAN', 'Noi Bai International Airport', 'Hanoi', 'Vietnam');
-
-INSERT INTO QUANLYVEMAYBAY.AIRPORTS (CODE, NAME, CITY, COUNTRY)
-VALUES ('SGN', 'Tan Son Nhat International Airport', 'Ho Chi Minh City', 'Vietnam');
-
--- ---------------------------
 -- ROUTES
 -- ---------------------------
 INSERT INTO QUANLYVEMAYBAY.ROUTES (ID, NAME)

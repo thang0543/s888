@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface AirlineRepository extends JpaRepository<Airline, Long> {
-    @Query("SELECT new com.airplane.quanlyvemaybay.respone.AirlineResDTO(a.id, a.code) FROM Airline a")
+    @Query("SELECT new com.airplane.quanlyvemaybay.respone.AirlineResDTO(a.id, a.name) FROM Airline a")
     List<AirlineResDTO> findAllIdAndName();
     Optional<Airline> findByCode(String name);
 }
