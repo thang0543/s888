@@ -20,9 +20,9 @@ export default function Home() {
           <MonthlySalesChart />
         </div>
 
-        <div className="col-span-12 xl:col-span-5">
+        {/* <div className="col-span-12 xl:col-span-5">
           <InvoiceCreateForm />
-        </div>
+        </div> */}
 
         <div className="col-span-12">
           <StatisticsChart />
