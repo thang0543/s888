@@ -25,7 +25,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <CalenderIcon />,
-    name: "tạo hóa đơn",
+    name: "Tạo hóa đơn",
     path: "/invoice/create",
   },
   {

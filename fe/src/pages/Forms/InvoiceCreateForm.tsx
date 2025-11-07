@@ -673,7 +673,7 @@ const InvoiceCreateForm: React.FC = () => {
           <Col span={16}>
             <Card
               title={
-                <span style={{ color: "#d4380d" }}>thông tin khách hàng</span>
+                <span style={{ color: "#d4380d" }}>Thông tin khách hàng</span>
               }
               style={{ height: "100%", minHeight: 500 }}
               bodyStyle={{ padding: 0 }}
@@ -698,7 +698,7 @@ const InvoiceCreateForm: React.FC = () => {
           <Col span={8}>
             <Card
               title={
-                <span style={{ color: "#d4380d" }}>thông tin chuyến bay</span>
+                <span style={{ color: "#d4380d" }}>Thông tin chuyến bay</span>
               }
               style={{ marginBottom: 16 }}
               extra={
